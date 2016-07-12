@@ -16,12 +16,12 @@ r=nil u=nil t=nil
 w("<BR><BR>")
 w("&nbsp;&nbsp;&nbsp;&nbsp;Files in memory<br><BR>")
 w("<table cellpadding ='2'>")
-    l = file.list();
-    for k,v in pairs(l) do
-    w("<tr>")
-       w("<td><B>"..k.."</td><td>"..v.." bytes</td>")
-    w("</tr>")
-    end
+l = file.list();
+for k,v in pairs(l) do
+  w("<tr>")
+  w("<td><B>"..k.."</td><td>"..v.." bytes</td>")
+  w("</tr>")
+end
 w("</table>")
 w("<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;End of info")
 w("</html>")
