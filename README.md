@@ -14,30 +14,24 @@ PHP files should be uploaded to a web server that is in the same network as the 
 # How To
 1. Copy the Lua files to your ESP.
 
-You can also use your own code to create a TCP server.
+  * You can also use your own code to create a TCP server.
 
-But don't change the wifi-tools.lua (otherwise the PHP files won't work).
+  * But don't change the wifi-tools.lua (otherwise the PHP files won't work).
 
 
 2. Copy the PHP Files to a webserver in your local network.
 
-Copy the files you want to upload to the ESP to the filebin directory.
-Don't change the name of the directory.
-
-Give proper rights to the controllerIP.txt file. (or just use 777)
+  * Copy the files you want to upload to the ESP to the filebin directory.
+  * Don't change the name of the directory.
+  * Give proper rights to the controllerIP.txt file. (or just use 777)
 
 
 3. Use your browser to access the WiFi File Manager.
 
-You should get a list of files in the filebin directory.
-
-
-Enter the name or IP of the ESP that you want to access.
-
-Enter the port on which the TCP server is listening.
-
-Press the update button.
-
+  * You should get a list of files in the filebin directory.
+  * Enter the name or IP of the ESP that you want to access.
+  * Enter the port on which the TCP server is listening.
+  * Press the update button.
 
 You should now be able to work with the File Manager.
 
