@@ -12,14 +12,14 @@ PHP files should be uploaded to a web server that is in the same network as the 
 ![Screenshot Index](/pics/screenshot-index.png?raw=true)
 
 # How To
-Copy the Lua files to your ESP.
+1. Copy the Lua files to your ESP.
 
 You can also use your own code to create a TCP server.
 
 But don't change the wifi-tools.lua (otherwise the PHP files won't work).
 
 
-Copy the PHP Files to a webserver in your local network.
+2. Copy the PHP Files to a webserver in your local network.
 
 Copy the files you want to upload to the ESP to the filebin directory.
 Don't change the name of the directory.
@@ -27,7 +27,7 @@ Don't change the name of the directory.
 Give proper rights to the controllerIP.txt file. (or just use 777)
 
 
-Use your browser to access the WiFi File Manager.
+3. Use your browser to access the WiFi File Manager.
 
 You should get a list of files in the filebin directory.
 
