@@ -60,7 +60,7 @@
         echo trim($datatoESP);
         fwrite($fp, $out);
         fclose($fp);
-        flush($fp);
+        flush();
     }
 
     ?>

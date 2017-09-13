@@ -11,7 +11,7 @@
     $out = "**command**compile**\n" . $filename;
     fwrite($fp, $out);
     fclose($fp);
-    flush($fp);
+    flush();
     if ($errno == 0) {
         echo "<b>compile($filename) sent!</b>";
         echo "<META http-equiv='refresh' content='2;URL=.'>";

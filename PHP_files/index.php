@@ -17,13 +17,63 @@ $uploadfiles = scandir("./filebin");    // reads the /filebin dir and puts all f
     </script>
 </head>
 <body>
-    <h2><center>ESP8266 NodeMCU WiFi File Manager</center></h2>
+    <h2>ESP8266 NodeMCU WiFi File Manager</h2>
     <table border="0" bgcolor='#f0f0f0' cellpadding="5" align="center" width="500">
         <tr>
             <td align="center">
+                <?php
+                    class MyDB extends SQLite3
+                    {
+                        function __construct()
+                        {
+                            $this->open('ESP8266.db');
+                        }
+                    }
+                    $db = new MyDB();
+                    if(!$db){
+                        echo $db->lastErrorMsg();
+                    } else {
+                        //      echo "Opened database successfully\n";
+                        $query = "CREATE TABLE IF NOT EXISTS nodes (IP TEXT, Name TEXT, Location TEXT)";
+                        $db->exec($query);
+                        $sql = <<<EOF
+          SELECT * from nodes;
+EOF;
+                        $ret = $db->query($sql);
+                        //   echo "Operation done successfully\n";
+                    }
+                ?>
+                <form action='add.php' method='post'>
+                    IP<input type = "text" name="IP">
+
+                    Name<input type = "text" name="name">
+                    <br>
+                    Location<input type = "text" name="loc">
+                    <input type='submit' value='Add'>
+                </form>
+
+                <form action='delete.php' method="post">
+                    IP <input type = "text" name="IP">
+
+                    Name <input type = "text" name="name">
+                    <br>
+                    Location <input type = "text" name="loc">
+                    <input type="submit" value="Delete" />
+                </form>
+                <hr>
+
                 <form action='writeIP.php' method='post'>   <!-- writes updated IP -->
                     <label for="chipIP">ESP address: </label>
-                    <input type='text' id="chipIP" name='chipIP' value='<?php echo $chipIP; ?>' size='15'>
+                    Target Controller IP: <input type='text' id="chipIP" name='chipIP' value='<?php echo $chipIP; ?>' size='15'>
+                    Target Controller IP: <?php echo $chipdata[0]; ?>
+                    <select name=""chipIP">
+                    <?php
+                            echo "<option selected=".$chipIP."value=". $chipIP.">".$chipdata[0] . "</option>";
+                            while ($row = $ret->fetchArray(SQLITE3_ASSOC)){
+                                echo "<option value=" . $row['IP'].">" . $row['IP']." " .$row['Name'] . "</option>";
+                            };
+                    ?>
+                    </select>
                     <label for="chipPort">Port: </label>
                     <input type='text' id="chipPort" name='chipPort' value='<?php echo $chipPort; ?>' size='5'>
                     <input type='submit' value='Update'>
@@ -42,7 +92,7 @@ $uploadfiles = scandir("./filebin");    // reads the /filebin dir and puts all f
 
                 <br>
                 <div style="border: 1px; background-color: #f8f8f8; width: 350px">
-                    <b><center>Files in '/filebin' available for upload:</center></b>
+                    <b>Files in '/filebin' available for upload:</b>
                     <p>Click on a file to upload it.</p>
                     <p>An already existing file will be overwritten.</p>
                     <br>
